@@ -1,0 +1,29 @@
+---
+#
+# Here we install "lightdm" as the desktop manager (e.g. providing the
+# login screen) and "xubuntu" as the desktop environment (e.g. providing
+# the environment after login).
+#
+- apt:
+    name:
+      - lightdm
+      - xubuntu-desktop
+    state: present
+
+#
+# This file configures lightdm such that the "ps" user will be logged in
+# automatically when the service starts (e.g. when the system boots).
+#
+- copy:
+    dest: /etc/lightdm/lightdm.conf
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      [SeatDefaults]
+      user-session=xubuntu
+      autologin-user=ps
+
+- service:
+    name: lightdm
+    enabled: true

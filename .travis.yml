@@ -7,4 +7,4 @@ install:
 
 script:
   - cd ansible/roles/prakashsurya.host-buttercup
-  - molecule test
+  - travis_wait molecule test

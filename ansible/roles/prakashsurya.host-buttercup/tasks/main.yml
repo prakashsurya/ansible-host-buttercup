@@ -1,2 +1,4 @@
 ---
-# tasks file for prakashsurya.host-buttercup
+- import_tasks: openfortivpn.yml
+- import_tasks: users.yml
+- import_tasks: xubuntu.yml

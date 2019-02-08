@@ -1,14 +1,45 @@
-# Molecule managed
-
-{% if item.registry is defined %}
-FROM {{ item.registry.url }}/{{ item.image }}
-{% else %}
+#
+# Since Molecule requires that we specify "image" in the molecule.yml
+# file (it will throw an error if it's not specified), we might as well
+# use the value specified there; with that said, this has only been
+# tested to work with "ubuntu:18.04".
+#
 FROM {{ item.image }}
-{% endif %}
 
-RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get install -y python sudo bash ca-certificates && apt-get clean; \
-    elif [ $(command -v dnf) ]; then dnf makecache && dnf --assumeyes install python sudo python-devel python2-dnf bash && dnf clean all; \
-    elif [ $(command -v yum) ]; then yum makecache fast && yum install -y python sudo yum-plugin-ovl bash && sed -i 's/plugins=0/plugins=1/g' /etc/yum.conf && yum clean all; \
-    elif [ $(command -v zypper) ]; then zypper refresh && zypper install -y python sudo bash python-xml && zypper clean -a; \
-    elif [ $(command -v apk) ]; then apk update && apk add --no-cache python sudo bash ca-certificates; \
-    elif [ $(command -v xbps-install) ]; then xbps-install -Syu && xbps-install -y python sudo bash ca-certificates && xbps-remove -O; fi
+ENV container docker
+
+#
+# Packages required by Molecule:
+#
+#  * ca-certificates
+#  * bash
+#  * python
+#  * sudo
+#
+# Packages required by Systemd:
+#
+#  * systemd
+#
+# Packages required by the Ansible role:
+#
+#  * openssh-server
+#
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        bash \
+        python \
+        openssh-server \
+        sudo \
+        systemd \
+    && apt-get clean \
+    && rm -Rf /var/lib/apt/lists/*
+
+#
+# In order to test and verify service manipulation via Molecule, we need
+# to run Systemd inside of the container. The following are all required
+# for Systemd to properly operate in the container.
+#
+RUN systemctl set-default multi-user.target
+VOLUME ["/sys/fs/cgroup"]
+CMD ["/lib/systemd/systemd"]

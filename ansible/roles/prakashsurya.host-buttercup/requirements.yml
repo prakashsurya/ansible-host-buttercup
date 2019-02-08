@@ -1,0 +1,7 @@
+---
+- src: https://github.com/dev-sec/ansible-ssh-hardening
+  name: dev-sec.ssh-hardening
+  version: 6.0.0
+- src: https://github.com/jnv/ansible-role-unattended-upgrades
+  name: jnv.unattended-upgrades
+  version: v1.7.0

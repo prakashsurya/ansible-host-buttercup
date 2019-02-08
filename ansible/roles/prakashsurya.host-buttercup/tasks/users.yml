@@ -1,0 +1,26 @@
+---
+#
+# Here we create the users that'll be used on the system, and properly
+# configure them; e.g. shell, groups, home directory, etc.
+#
+- group:
+    name: ps
+    system: false
+
+- user:
+    name: ps
+    group: ps
+    shell: /bin/bash
+    home: /home/ps
+    system: false
+
+- file:
+    path: /home/ps
+    state: directory
+    owner: ps
+    group: ps
+    mode: 0755
+
+- authorized_key:
+    key: https://github.com/prakashsurya.keys
+    user: ps

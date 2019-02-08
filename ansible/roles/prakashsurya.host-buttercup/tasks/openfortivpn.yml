@@ -1,0 +1,63 @@
+---
+#
+# To connect to Delphix's VPN we use the "openfortivpn" project. Since
+# there aren't packages readily available, we download and build the
+# project "on the fly" here.
+#
+# Additionally, we create a Systemd service file so that we can easily
+# run the VPN client using Systemd commands.
+#
+
+# to build the project, we need to install these build dependencies
+- apt:
+    name:
+      - autoconf
+      - build-essential
+      - git
+      - libssl-dev
+      - pkg-config
+    state: present
+
+# to isolate the project's files, we use a new directory in /opt
+- file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /opt
+    - /opt/openfortivpn
+    - /opt/openfortivpn/src
+
+# download the project's source code
+- git:
+    repo: https://github.com/adrienverge/openfortivpn.git
+    dest: /opt/openfortivpn/src
+    version: v1.7.0
+    update: false
+  register: checkout
+
+# build the project
+- shell: '{{ item }}'
+  args:
+    chdir: /opt/openfortivpn/src
+  with_items:
+    - ./autogen.sh
+    - ./configure --prefix=/opt/openfortivpn
+    - make
+    - make install
+  when: checkout.changed
+
+- copy:
+    dest: /etc/systemd/system/openfortivpn.service
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      [Unit]
+      Description = Client for PPP+SSL VPN tunnel services
+
+      [Service]
+      ExecStart = /opt/openfortivpn/bin/openfortivpn -c /opt/openfortivpn/etc/openfortivpn/config
+      Type = simple
+
+      [Install]
+      WantedBy = multi-user.target
