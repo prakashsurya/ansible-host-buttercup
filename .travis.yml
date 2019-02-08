@@ -1,0 +1,10 @@
+---
+language: python
+services: docker
+
+install:
+  - pip install docker molecule
+
+script:
+  - cd ansible/roles/prakashsurya.host-buttercup
+  - molecule test
