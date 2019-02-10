@@ -1,4 +1,5 @@
 ---
+- import_tasks: hub.yml
 - import_tasks: openfortivpn.yml
 - import_tasks: misc-pkgs.yml
 - import_tasks: users.yml

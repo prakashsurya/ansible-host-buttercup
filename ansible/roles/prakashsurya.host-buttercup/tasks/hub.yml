@@ -1,0 +1,46 @@
+---
+#
+# The "hub" enables interaction with GitHub via the CLI (e.g. opening
+# pull requests). Unfortunately there doesn't appear to be any package
+# for this in Ubuntu's repositories, so we build and install the command
+# "on the fly" here.
+#
+
+# to build the project, we need to install these build dependencies
+- apt:
+    name:
+      - bsdmainutils
+      - git
+      - golang-go
+      - make
+    state: present
+
+# to isolate the project's files, we use a new directory in /opt
+- file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /opt
+    - /opt/hub
+    - /opt/hub/src
+    - /opt/hub/src/github.com
+    - /opt/hub/src/github.com/github
+    - /opt/hub/src/github.com/github/hub
+
+# download the project's source code
+- git:
+    repo: https://github.com/github/hub
+    dest: /opt/hub/src/github.com/github/hub
+    version: v2.8.4
+    update: false
+  register: checkout
+
+# build the project
+- shell: '{{ item }}'
+  args:
+    chdir: /opt/hub/src/github.com/github/hub
+  environment:
+    GOPATH: /opt/hub
+  with_items:
+    - make install prefix=/opt/hub
+  when: checkout.changed
