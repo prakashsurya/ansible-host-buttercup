@@ -1,0 +1,19 @@
+---
+- apt:
+    name:
+      - build-essential
+      - cscope
+      - dnsutils
+      - docker.io
+      - exuberant-ctags
+      - gist
+      - git
+      - hugo
+      - openjdk-8-jdk
+      - openjdk-8-jre
+      - pandoc
+      - rdesktop
+      - rsync
+      - tmux
+      - vim-nox
+    state: present
