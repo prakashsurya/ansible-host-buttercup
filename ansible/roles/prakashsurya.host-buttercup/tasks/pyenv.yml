@@ -1,0 +1,24 @@
+---
+#
+# See also: https://github.com/pyenv/pyenv/wiki/common-build-problems
+#
+- apt:
+    name:
+      - build-essential
+      - curl
+      - libbz2-dev
+      - libffi-dev
+      - liblzma-dev
+      - libncurses5-dev
+      - libncursesw5-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - llvm
+      - make
+      - python-openssl
+      - tk-dev
+      - wget
+      - xz-utils
+      - zlib1g-dev
+    state: present
