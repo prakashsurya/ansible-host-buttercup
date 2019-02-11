@@ -17,6 +17,7 @@
       - python-pip
       - rdesktop
       - rsync
+      - tlp
       - tmux
       - vim-nox
     state: present
