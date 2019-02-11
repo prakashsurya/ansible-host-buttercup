@@ -17,6 +17,7 @@
       - python-pip
       - rdesktop
       - rsync
+      - sysstat
       - tlp
       - tmux
       - vim-nox
