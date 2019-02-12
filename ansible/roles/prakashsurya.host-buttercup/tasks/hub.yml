@@ -41,6 +41,7 @@
     chdir: /opt/hub/src/github.com/github/hub
   environment:
     GOPATH: /opt/hub
+    LC_CTYPE: en_US.UTF-8
   with_items:
     - make install prefix=/opt/hub
   when: checkout.changed

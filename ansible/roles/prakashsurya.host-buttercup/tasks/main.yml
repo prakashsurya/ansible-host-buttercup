@@ -1,8 +1,8 @@
 ---
+- import_tasks: elementary.yml
 - import_tasks: hub.yml
 - import_tasks: openfortivpn.yml
 - import_tasks: misc-pkgs.yml
 - import_tasks: pyenv.yml
 - import_tasks: users.yml
-- import_tasks: xubuntu.yml
 - import_tasks: zoom.yml

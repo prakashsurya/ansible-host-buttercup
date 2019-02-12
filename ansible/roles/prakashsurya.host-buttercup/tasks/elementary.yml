@@ -1,13 +1,16 @@
 ---
 #
-# Here we install "lightdm" as the desktop manager (e.g. providing the
-# login screen) and "xubuntu" as the desktop environment (e.g. providing
-# the environment after login).
+# Here we install "lightdm" as the desktop manager (providing the login
+# screen) and "elementary" as the desktop environment (providing the
+# environment after login).
 #
+- apt_repository:
+    repo: ppa:elementary-os/stable
+
 - apt:
     name:
       - lightdm
-      - xubuntu-desktop
+      - elementary-desktop
     state: present
 
 #
@@ -21,7 +24,7 @@
     mode: 0644
     content: |
       [SeatDefaults]
-      user-session=xubuntu
+      user-session=pantheon
       autologin-user=ps
 
 - service:
