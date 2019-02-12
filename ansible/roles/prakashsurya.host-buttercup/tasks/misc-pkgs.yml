@@ -18,6 +18,8 @@
       - python-pip
       - rdesktop
       - rsync
+      - ruby
+      - ruby-dev
       - sysstat
       - tlp
       - tmux
