@@ -6,6 +6,7 @@
       - dnsutils
       - docker.io
       - exuberant-ctags
+      - firefox
       - gist
       - git
       - gopass
