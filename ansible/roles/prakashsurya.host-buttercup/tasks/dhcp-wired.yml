@@ -1,0 +1,19 @@
+---
+- file:
+    path: '{{ item }}'
+    state: directory
+  with_items:
+    - /etc
+    - /etc/netplan
+
+- copy:
+    dest: /etc/netplan/dhcp-wired.yaml
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      network:
+        version: 2
+        ethernets:
+          enp0s31f6:
+            dhcp4: true
