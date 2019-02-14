@@ -8,6 +8,8 @@ dependencies:
    ssh_allow_users: ps
    # required for systemd "--user" services
    ssh_use_pam: true
+   # allow ssh client to use password based authentication
+   ssh_client_password_login: true
  #
  # Enables unattened upgrades; e.g. to install security updates.
  #
