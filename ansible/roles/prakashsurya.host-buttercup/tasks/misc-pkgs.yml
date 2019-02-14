@@ -10,6 +10,7 @@
       - gist
       - git
       - gopass
+      - grip
       - hugo
       - openjdk-8-jdk
       - openjdk-8-jre
@@ -24,4 +25,5 @@
       - tlp
       - tmux
       - vim-nox
+      - xdotool
     state: present
