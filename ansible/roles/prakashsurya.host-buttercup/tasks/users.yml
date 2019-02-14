@@ -10,9 +10,11 @@
 - user:
     name: ps
     group: ps
+    groups: docker
     shell: /bin/bash
     home: /home/ps
     system: false
+    append: true
 
 - file:
     path: /home/ps
