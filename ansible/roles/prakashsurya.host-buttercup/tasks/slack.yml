@@ -1,0 +1,3 @@
+---
+- apt:
+    deb: https://downloads.slack-edge.com/linux_releases/slack-desktop-3.3.7-amd64.deb
