@@ -70,6 +70,7 @@
     content: |
       # config file for ope6nfortivpn, see man openfortivpn(1)
       trusted-cert = 46f26f1afd9bac80bb896436821a198c008ad5e88a172353671545aa1df40054
+      trusted-cert = c2ba5f00acee9ac065b6ad2cd9e72ebf8a7519441cb1e0973b5b04e7f1d50c4a
       host = uservpn.delphix.com
       port = 443
       username = prakash.surya@delphix.com
