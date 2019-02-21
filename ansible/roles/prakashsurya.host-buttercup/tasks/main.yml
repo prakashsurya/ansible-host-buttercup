@@ -7,5 +7,12 @@
 - import_tasks: pyenv.yml
 - import_tasks: slack.yml
 - import_tasks: spotify.yml
-- import_tasks: users.yml
+- import_tasks: vagrant.yml
 - import_tasks: zoom.yml
+
+#
+# This task file depends on certain groups existing that will be created
+# via other task files. Thus, we put this last, to ensure these groups
+# will exist before they're used to configure the users.
+#
+- import_tasks: users.yml
