@@ -1,0 +1,8 @@
+---
+- apt:
+    name:
+      - libvirt-bin
+      - vagrant
+      - virtualbox
+      - qemu-kvm
+    state: present

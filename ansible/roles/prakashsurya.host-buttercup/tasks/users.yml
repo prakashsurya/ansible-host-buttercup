@@ -10,7 +10,7 @@
 - user:
     name: ps
     group: ps
-    groups: docker
+    groups: docker,libvirt
     shell: /bin/bash
     home: /home/ps
     system: false
