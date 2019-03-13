@@ -17,6 +17,7 @@
       - openjdk-8-jre
       - openssl
       - pandoc
+      - pv
       - python
       - python-pip
       - rdesktop
