@@ -13,6 +13,7 @@
       - grip
       - hugo
       - nmap
+      - oathtool
       - openjdk-8-jdk
       - openjdk-8-jre
       - openssl
