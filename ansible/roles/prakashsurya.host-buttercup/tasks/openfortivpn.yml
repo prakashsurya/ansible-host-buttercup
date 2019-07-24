@@ -31,8 +31,8 @@
 - git:
     repo: https://github.com/adrienverge/openfortivpn.git
     dest: /opt/openfortivpn/src
-    version: v1.7.0
-    update: false
+    version: v1.10.0
+    update: yes
   register: checkout
 
 # build the project
