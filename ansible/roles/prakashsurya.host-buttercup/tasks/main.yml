@@ -1,6 +1,7 @@
 ---
 - import_tasks: dhcp-wired.yml
 - import_tasks: elementary.yml
+- import_tasks: gollum.yml
 - import_tasks: hub.yml
 - import_tasks: openfortivpn.yml
 - import_tasks: misc-pkgs.yml

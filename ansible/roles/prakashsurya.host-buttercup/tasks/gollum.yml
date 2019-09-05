@@ -1,0 +1,20 @@
+---
+#
+# See also: https://github.com/gollum/gollum/wiki/Installation
+#
+- apt:
+    name:
+      - ruby-dev
+      - make
+      - zlib1g-dev
+      - libicu-dev
+      - build-essential
+      - git
+      - cmake
+    state: present
+
+- gem:
+    name: gollum
+    state: present
+    user_install: no
+    include_doc: yes
